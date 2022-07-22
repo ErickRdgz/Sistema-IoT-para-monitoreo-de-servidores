@@ -1,0 +1,139 @@
+*{
+	font-family: 'Sen', sans-serif;
+	font-size: 40px;
+
+}
+
+#Title{
+	font-style: bold;
+}
+
+.pagep{
+	background: #2f6997;
+	margin: 0;
+	height: 600px;
+}
+
+.Caja1{
+	height: 180px;
+	background: #2f6997;
+	color: #fff;
+	width: 70%;
+	display: inline-block;
+}
+
+.Caja10{
+	height: 180px;
+	background: #2f6997;
+	color: #a00000;
+	width: 30%;
+	display: inline-block;
+	float: right;
+}
+
+.Cam div{
+
+}
+
+.Caja2{
+	background: #212121;
+	height: 600px;
+	transition: all 1s;
+	color: #fff;
+	float: right;
+	width: 55%;
+	float: right;
+}
+
+.Caja2:hover{
+	background: #34b6f4;
+	height: 600px;
+	transition: background 1s, height 1s;
+}
+
+.Caja3{
+	background: #212121;
+	color: #fff;
+	height: 600px;
+	transition: all 1s;
+}
+
+.Caja3:hover{
+	background: #b0c2f2;
+	height: 600px;
+	transition: background 1s, height 1s;
+}
+
+.Caja4{
+	background: #fff;
+	height: 50px;
+	position: sticky;
+	bottom: 0;
+	width: 50%;
+	transition: all 1s;
+	color: #212121;
+	display: inline-block;
+}
+
+.Caja4:hover{
+	background: #4f3;
+	color: #212121;
+	height: 150px;
+	width: 50%;
+	bottom: 0;
+	transition: background 1s, height 1s;
+}
+
+.Caja5{
+	background: #fff;
+	color: #212121;
+	height: 50px;
+	position: sticky;
+	bottom: 0;
+	transition: all 1s;
+	width: 50%;
+	float: right;
+	display: inline-block;
+}
+
+.Caja5:hover{
+	background: #ff9f1c;
+	height: 150px;
+	bottom: 0;
+	transition: all 1s;
+	color: #212121;
+}
+
+#Control{
+	font-size: 25px;
+	margin-top: 70px;
+}
+
+#valor{
+	border-style: solid;
+	border-color: #212121;
+	border-radius: 9px;
+	padding: 1px 15px;
+}
+
+#t-actual{
+	padding: 1px 15px;
+}
+
+
+button{
+	border-radius: 13px;
+	border-color: #6f6f6f;
+	background: none;
+	cursor: pointer;
+	padding: 10px 20px;
+	color: #fff;
+}
+
+button:active{
+	background: #6f6f6f;
+}
+
+.Resize{
+	margin-left: 25px;
+}

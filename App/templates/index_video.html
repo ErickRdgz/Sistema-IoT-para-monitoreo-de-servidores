@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LANIA Server Room</title>
+	<link rel="stylesheet" href="{{url_for('static',filename='css/desing.css')}}">
+	<link rel="stylesheet" type="text/css" href="normalize.css">
+	<link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
+	<!-- <script src="js/sockets.js"></script> -->
+	
+
+
+
+
+
+	     
+
+</head>
+	<div class="Caja1">
+		<img src="{{url_for('static', filename='LANIA.png')}}">
+
+	</div>
+	<div class="Caja10">
+		<span id="Power"></span>
+	</div>
+		<div class="Caja2">
+			<a id="Title">Servers Room</a>
+			<div><button  id="Cam_ON">On</button><button onclick="location.href='/'" id="Cam_OFF">Off</button></div>
+			<div id="Camera" class="Cam">  <img class="Resize" src="{{ url_for('video_feed') }}"/> </div>
+			
+		</div>
+<body class="pagep">
+		<div >
+		<div class="Caja3">
+			Control
+			<div><a id="Control">Temperatura actual: </a><span id="temp_actual">21°</span>
+					<div>
+							<button id="AC_ON">On</button> 
+							<button id="AC_OFF">Off</button>
+					</div>
+
+						<a id="Control">Temperatura nueva </a><a id="boxtemp"><span id="temp_conf">19</span><span>°C</span></a>			
+
+						<div>
+							<button id="Aumentar" class="boton aumentar">+</button>
+							<button id="Disminuir" class="boton disminuir">-</button>
+							<button id="Establecer" >Establecer</button>
+							<button id="publish" class="btn btn-primary">Publish</button>
+						</div>
+					<div>
+							<button onclick="Eco_State()" id="Eco" class="boton Eco">Ahorrador (OFF)</button>
+					</div>
+			</div>
+		</div>
+					
+					
+		<div class="Caja4">
+			Temperatura
+			<div> 
+				<a>Temperatura punto A: </a><a><span id="temperature_Stream">0</span><span>°C</span></a>
+			</div>
+			<div> 
+				<a>Temperatura punto B: </a><a><span id="temperature_Stream_MQTT">0</span><span>°C</span></a>
+			</div>
+		</div>
+		<div class="Caja5">
+			Humedad
+			<div> 
+				<a>Humedad punto A: </a><a><span id="humidity_Stream">0</span><span>%</span></a>
+			</div>
+			<div> 
+				<a>Humedad punto B: </a><a><span id="humidity_Stream_MQTT">0</span><span>%</span></a>
+			</div>
+		</div>
+		
+
+<script
+src="https://code.jquery.com/jquery-3.6.0.min.js"
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"
+	charset="utf-8" ></script> 
+
+<script type="text/javascript" charset="utf-8">
+	let counter = 21;
+	let ahorrador_State= 0;
+	let Power
+	
+	$(document).ready(function() {
+		const socketio=io();
+		
+
+		socketio.on('Server_Response',function(msg){
+			alert(msg);
+		});
+		
+		
+		socketio.on('Power',function(msg){
+			console.log(msg)
+			if (Power !=msg){
+				Power=msg
+				if (Power){
+					Power_.textContent=""// HAY CORRENTE ELECTRICA
+				}
+				else{
+					Power_.textContent="SIN ENERGIA" //  NO HAY CORRIENTE ELECTRICA
+				}
+			}
+		});
+
+		socketio.on('Stream_Data',function(msg){
+			console.log(msg['Temperature'])
+			console.log(msg['Humidity'])
+			humidity_Stream.textContent=msg['Humidity']
+			temperature_Stream.textContent=msg['Temperature']
+		});
+
+		socketio.on('Stream_Data_MQTT',function(msg){
+			console.log(msg['Temperature'])
+			console.log(msg['Humidity'])
+			humidity_Stream_MQTT.textContent=msg['Humidity']
+			temperature_Stream_MQTT.textContent=msg['Temperature']
+		});
+
+		$('#AC_OFF').click(function(event) {
+		socketio.emit('AC_OFF',"OFF");
+		temp_actual.textContent = "OFF";
+		});
+
+		$('#AC_ON').click(function(event) {
+			var temp=temp_conf.textContent;
+			if (ahorrador_State==1){
+				var State='{"Temperature":'+ temp +',"Sleep":"ON"}';
+			}else{
+				var State='{"Temperature":'+ temp +',"Sleep":"OFF"}';
+			}
+			temp_actual.textContent = temp + "°C";
+			socketio.emit('AC_Control', State);	
+		});
+
+		$('#Establecer').click(function(event) {
+			var temp=temp_conf.textContent;
+			if (ahorrador_State==1){
+				var State='{"Temperature":'+ temp +',"Sleep":"ON"}';
+			}else{
+				var State='{"Temperature":'+ temp +',"Sleep":"OFF"}';
+			}
+			temp_actual.textContent = temp + "°C";
+			socketio.emit('AC_Control', State);
+		});
+
+
+
+	});
+
+
+	// const Show_cam = () =>{
+	// 	document.getElementById("Camera").style.display='block'
+	// }
+
+	// const Hide_cam = () =>{
+	// 	document.getElementById("Camera").style.display='none'
+	// }
+
+	const Eco_State = () =>{
+		if (ahorrador_State==0){
+				ahorrador_State=1;
+				Eco.textContent="Ahorrador (ON)";
+				
+		}else{
+			ahorrador_State=0;
+			Eco.textContent="Ahorrador (OFF)";
+		}
+
+	}
+
+	
+
+
+	const valor = document.querySelector('#valor')
+	const botones = document.querySelectorAll('.boton')
+
+	botones.forEach(boton =>{
+	boton.addEventListener('click', function(e){
+
+		const estilos = e.currentTarget.classList;
+
+		if(estilos.contains('disminuir')){
+			if (counter==17){
+				alert("La temperatura minima es 17°C");
+			}else{
+				counter--;
+			}
+		}
+
+		else if(estilos.contains('aumentar')){
+			if (counter==30){
+				alert("La temperatura maxima es 30°C");
+			}else{
+			counter++;
+			}
+		}
+		temp_conf.textContent = counter;
+
+	})
+	})
+
+
+
+</script>
+</body>
+</html>
