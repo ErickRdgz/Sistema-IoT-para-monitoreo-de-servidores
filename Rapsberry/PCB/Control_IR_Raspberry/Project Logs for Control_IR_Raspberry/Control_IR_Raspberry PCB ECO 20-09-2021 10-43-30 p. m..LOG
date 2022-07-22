@@ -1,0 +1,19 @@
+Removed Pin From Net: NetName=5v Pin=P1-5
+Removed Pin From Net: NetName=3v3 Pin=P1-9
+Removed Pin From Net: NetName=GND Pin=P1-10
+Removed Pin From Net: NetName=3v3 Pin=P1-11
+Removed Pin From Net: NetName=GND Pin=P1-12
+Change Component Footprint: Designator=P1 Old Footprint=HDR2X6 New Footprint=Header 4x2
+Change Component Comment : Designator=P1 Old Comment=Header 6X2 New Comment=Header 4x2
+Change Component Designator: OldDesignator=-  5V NewDesignator=B1
+Change Component Designator: OldDesignator=4N35 NewDesignator=U1
+Change Component Designator: OldDesignator=DTH 11 NewDesignator=S1
+Change Component Designator: OldDesignator=GND  5V NewDesignator=B2
+Change Component Designator: OldDesignator=IO out NewDesignator=P2
+Change Component Designator: OldDesignator=IR Rx NewDesignator=S2
+Change Component Designator: OldDesignator=IR Tx NewDesignator=D1
+Added Pin To Net: NetName=3v3 Pin=P1-5
+Added Member To Class: ClassName=Control_IR_Raspberry Member=Component D1 LED0
+Added Member To Class: ClassName=Control_IR_Raspberry Member=Component R4 Res1
+Added Member To Class: ClassName=Control_IR_Raspberry Member=Component R6 Res1
+Added Room: Name=Control_IR_Raspberry

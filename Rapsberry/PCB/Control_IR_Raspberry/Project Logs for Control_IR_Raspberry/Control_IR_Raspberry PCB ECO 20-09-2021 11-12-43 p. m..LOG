@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=3v3 Pin=P1-1
+Removed Pin From Net: NetName=3v3 Pin=P1-3
+Removed Pin From Net: NetName=5v Pin=P1-5
+Removed Pin From Net: NetName=5v Pin=P1-7
+Added Pin To Net: NetName=5v Pin=P1-1
+Added Pin To Net: NetName=5v Pin=P1-3
+Added Pin To Net: NetName=3v3 Pin=P1-5
+Added Pin To Net: NetName=3v3 Pin=P1-7
+Added Room: Name=Control_IR_Raspberry
