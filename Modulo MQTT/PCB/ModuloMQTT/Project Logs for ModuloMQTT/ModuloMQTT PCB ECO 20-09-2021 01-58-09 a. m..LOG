@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=NetP1_2 Pin=U1-3
+Change Component Designator: OldDesignator=GND IO2 3v3 NewDesignator=P3
+Change Component Designator: OldDesignator=Vin GND NewDesignator=P1
+Added Component: Designator=SW1(Header 3)
+Added Pin To Net: NetName=NetP1_2 Pin=SW1-3
+Added Pin To Net: NetName=NetSW1_2 Pin=SW1-2
+Added Pin To Net: NetName=NetSW1_2 Pin=U1-3
+Added Net: Name=NetSW1_2
+Added Member To Class: ClassName=ModuloMQTT Member=Component SW1 SW3
+Added Room: Name=ModuloMQTT

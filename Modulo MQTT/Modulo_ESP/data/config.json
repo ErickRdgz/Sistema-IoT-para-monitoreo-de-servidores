@@ -1,0 +1,1 @@
+{"ESPname": "ESP2","ESPpassword":"12345678","MQTTserver":"192.168.1.67","MQTTuser":"ESP2","MQTTpassword":"12345678","MQTTport":"1883","CtrlTopic":"Ctrl/ESP2","StatusTopic":"Status/ESP2","TempTopic":"Temperature/ESP2"}
