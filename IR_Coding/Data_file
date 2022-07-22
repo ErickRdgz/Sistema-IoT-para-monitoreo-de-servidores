@@ -1,0 +1,50 @@
+Temperatura minima 17
+Temperatura maxima 30
+
+Modos: auto(A)  cool(C)  dry(D) heat(H) fan(F)
+
+fanspeed: 0 1 2 3 
+
+timers (ON/OFF): 
+	off 
+	0.5 
+	1.0
+	...
+	10
+	11
+	...
+	24
+sleep : on off
+
+INICIO DE CAPTURA : 
+* 17 auto sleep_0ff fan_npi (A1)
+* 18 auto sleep_0ff fan_npi (A2)
+...
+* 30 auto sleep_0ff fan_npi (A14)
+
+* 19 cool sleep_0ff fan_npi (C1)
+* 19 dry sleep_0ff fan_npi (D1)
+* 19 heat sleep_0ff fan_npi (H1)
+* 19 fan sleep_0ff fan_npi (F1)
+* 19 fan sleep_0ff fan_1 (F2) 
+* 19 fan sleep_0ff fan_2 (F3) 
+* 19 fan sleep_0ff fan_3 (F4) 
+* 19 fan sleep_0ff fan_0 (F5) 
+
+* 19 auto sleep_0ff fan_npi (A15) sleep ON
+* 19 auto sleep_0ff fan_npi (A16) sleep OFF
+
+
+* 17 fan sleep_0ff fan_0 (C2) 
+			  H2
+			  D2
+				
+
+
+
+
+
+
+
+
+
